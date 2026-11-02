@@ -1,0 +1,8 @@
+{
+  "name": "GearTech - Máy Tính \u0026 Gaming Gear",
+  "description": "Website thương mại điện tử linh kiện máy tính, PC gaming, laptop và phụ kiện công nghệ với hệ thống quản trị Admin toàn diện.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

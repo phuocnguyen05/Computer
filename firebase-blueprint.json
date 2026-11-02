@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User account information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "username": { "type": "string" },
+        "fullName": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["ADMIN", "STAFF", "USER"] },
+        "address": { "type": "string" },
+        "points": { "type": "number" },
+        "status": { "type": "string", "enum": ["ACTIVE", "LOCKED"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "username", "fullName", "email", "role"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Store product details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "sku": { "type": "string" },
+        "priceOriginal": { "type": "number" },
+        "priceSale": { "type": "number" },
+        "stock": { "type": "number" },
+        "categoryId": { "type": "number" },
+        "brand": { "type": "string" },
+        "status": { "type": "string", "enum": ["ACTIVE", "HIDDEN", "OUT_OF_STOCK"] }
+      },
+      "required": ["id", "name", "sku", "priceSale", "categoryId"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "orderCode": { "type": "string" },
+        "userId": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "orderCode", "userId", "totalAmount", "status"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Customer support chat conversation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "lastMessageText": { "type": "string" },
+        "lastMessageAt": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "customerId", "customerName"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles collection"
+    },
+    "products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Products catalog collection"
+    },
+    "orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Orders collection"
+    },
+    "conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Customer support chat conversations collection"
+    }
+  }
+}
